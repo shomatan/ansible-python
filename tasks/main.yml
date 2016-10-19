@@ -1,0 +1,9 @@
+---
+- name: Ensure python-devel is installed.
+  yum: name=python-devel state=installed
+
+- name: Ensure pip is installed by easy_install.
+  easy_install: name=pip state=latest
+
+- name: Ensure virtualenv is installed by pip.
+  pip: name=virtualenv
