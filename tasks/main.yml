@@ -2,6 +2,9 @@
 - name: Ensure python-devel is installed.
   yum: name=python-devel state=installed
 
+- name: Ensure easy_install is installed.
+  yum: name=python-setuptools state=installed
+
 - name: Ensure pip is installed by easy_install.
   easy_install: name=pip state=latest
 
