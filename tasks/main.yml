@@ -5,8 +5,14 @@
 - name: Ensure easy_install is installed.
   yum: name=python-setuptools state=installed
 
+- name: Check pip is installed.
+  command: easy_install --dry-run pip
+  register: result
+  changed_when: False
+
 - name: Ensure pip is installed by easy_install.
   easy_install: name=pip state=latest
+  changed_when: '"already the active version" not in result.stdout'
 
 - name: Ensure virtualenv is installed by pip.
   pip: name=virtualenv
