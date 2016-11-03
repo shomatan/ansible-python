@@ -14,5 +14,5 @@
   easy_install: name=pip state=latest
   changed_when: '"already the active version" not in result.stdout'
 
-- name: Ensure virtualenv is installed by pip.
-  pip: name=virtualenv
+- name: Ensure virtualenv is installed by easy_install.
+  easy_install: name=virtualenv
