@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- hosts: all
+  ansible_connection: local
   remote_user: root
   roles:
-    - roles/python
+    - role_under_test
