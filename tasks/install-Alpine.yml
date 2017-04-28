@@ -1,0 +1,13 @@
+---
+- name: Ensure required packages are installed.
+  apk:
+    name: "{{ item }}"
+    update_cache: yes
+    state: installed
+  with_items:
+    - python
+    - python-devel
+
+- name: Purge apk cache.
+  command: rm -rf /var/cache/apk/*
+  when: ansible_connection == 'docker'    

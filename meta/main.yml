@@ -9,6 +9,9 @@ galaxy_info:
     - name: EL
       versions:
         - all
+    - name: Alpine
+      versions:
+        - all    
   galaxy_tags: []
 
 dependencies: []
