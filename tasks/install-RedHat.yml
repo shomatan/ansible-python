@@ -1,0 +1,33 @@
+---
+- name: Ensure required packages are installed.
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - python-devel
+    - libffi-devel
+    - openssl-devel 
+
+- name: Ensure easy_install is installed.
+  yum:
+    name: python-setuptools
+    state: installed
+
+- name: Check pip is installed.
+  command: easy_install --dry-run pip
+  register: result
+  changed_when: False
+
+- name: Ensure pip is installed by easy_install.
+  easy_install:
+    name: pip
+    state: latest
+  changed_when: '"already the active version" not in result.stdout'
+
+- name: Ensure virtualenv is installed by easy_install.
+  easy_install:
+    name: virtualenv
+
+- name: Purge yum cache.
+  command: yum clean all
+  when: ansible_connection == 'docker'    
