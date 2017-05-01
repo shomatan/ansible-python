@@ -8,6 +8,15 @@
     - python
     - python-devel
 
+- name: Ensure pip is installed by apk.
+  apk:
+    name: py-pip
+    state: latest
+
+- name: Ensure virtualenv is installed by apk.
+  apk:
+    name: py-virtualenv
+
 - name: Purge apk cache.
   command: rm -rf /var/cache/apk/*
   when: ansible_connection == 'docker'    
