@@ -1,21 +1,14 @@
 ---
-- name: Ensure required packages are installed.
-  apk:
-    name: "{{ item }}"
-    update_cache: yes
-    state: installed
-  with_items:
-    - python
-    - python-devel
-
 - name: Ensure pip is installed by apk.
   apk:
     name: py-pip
+    update_cache: yes
     state: latest
 
 - name: Ensure virtualenv is installed by apk.
   apk:
     name: py-virtualenv
+    update_cache: yes
 
 - name: Purge apk cache.
   command: rm -rf /var/cache/apk/*
